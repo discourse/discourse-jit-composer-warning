@@ -1,36 +1,13 @@
 import { withPluginApi } from "discourse/lib/plugin-api";
 import JitComposerWarningComponent from "../components/composer-messages/jit-composer-warning";
 
-function isFeatureEnabled(currentUser, siteSettings) {
-  if (!siteSettings.jit_composer_warning_enabled) {
-    return false;
-  }
-
-  if (!currentUser) {
-    return false;
-  }
-
-  const allowedGroups = siteSettings.jit_composer_warning_allowed_groups;
-  if (!allowedGroups || allowedGroups.length === 0) {
-    return false;
-  }
-
-  const userGroups = currentUser.groups?.map((g) => g.id) || [];
-  const allowedGroupIds = allowedGroups
-    .split("|")
-    .map((id) => parseInt(id, 10));
-
-  return allowedGroupIds.some((groupId) => userGroups.includes(groupId));
-}
-
 export default {
   name: "jit-composer-warning",
 
   initialize(container) {
     const currentUser = container.lookup("service:current-user");
-    const siteSettings = container.lookup("service:site-settings");
 
-    if (!isFeatureEnabled(currentUser, siteSettings)) {
+    if (!currentUser?.can_use_jit_composer_warning) {
       return;
     }
 

@@ -18,4 +18,11 @@ end
 
 require_relative "lib/jit_composer_warning/engine"
 
-after_initialize { require_relative "lib/jit_composer_warning/post_analyzer" }
+after_initialize do
+  require_relative "lib/jit_composer_warning/post_analyzer"
+
+  add_to_serializer(:current_user, :can_use_jit_composer_warning) do
+    SiteSetting.jit_composer_warning_enabled &&
+      scope.user.in_any_groups?(SiteSetting.jit_composer_warning_allowed_groups_map)
+  end
+end
