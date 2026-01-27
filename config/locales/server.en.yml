@@ -1,1 +1,8 @@
 en:
+  site_settings:
+    jit_composer_warning_enabled: "Enable JIT composer warning feature"
+    jit_composer_warning_allowed_groups: "Users in these groups will have their new topic drafts analyzed. Empty = feature disabled for all."
+    jit_composer_warning_min_characters: "Minimum number of characters required before analyzing the post."
+    jit_composer_warning_debounce_seconds: "Seconds to wait after user stops typing before analyzing the post."
+    jit_composer_warning_persona: "AI persona to use for analyzing topic drafts. Configure the persona's response format to control warning logic."
+    jit_composer_warning_rate_limit_per_minute: "Maximum number of analysis requests per user per minute."

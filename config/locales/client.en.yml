@@ -3,7 +3,9 @@ en:
     admin:
       site_settings:
         categories:
-          TODO_plugin_name: "Plugin Name"
+          jit_composer_warning: "JIT Composer Warning"
   js:
-    discourse_plugin_name:
-      placeholder: placeholder
+    jit_composer_warning:
+      title: "A moment before you post..."
+      default_message: "Consider reviewing your post to ensure it's clear and adds value to the discussion."
+      dismiss: "Got it"

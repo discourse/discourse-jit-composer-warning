@@ -1,8 +1,7 @@
 # frozen_string_literal: true
 
-MyPluginModule::Engine.routes.draw do
-  get "/examples" => "examples#index"
-  # define routes here
-end
+JitComposerWarning::Engine.routes.draw { post "/analyze" => "analyze#analyze" }
 
-Discourse::Application.routes.draw { mount ::MyPluginModule::Engine, at: "my-plugin" }
+Discourse::Application.routes.draw do
+  mount ::JitComposerWarning::Engine, at: "jit-composer-warning"
+end
