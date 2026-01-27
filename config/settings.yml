@@ -1,4 +1,32 @@
-TODO_plugin_name:
-  plugin_name_enabled:
+jit_composer_warning:
+  jit_composer_warning_enabled:
     default: false
+
+  jit_composer_warning_allowed_groups:
+    type: group_list
+    default: ""
+    list_type: compact
+    allow_any: false
+
+  jit_composer_warning_min_characters:
+    default: 100
+    min: 50
+    max: 1000
     client: true
+
+  jit_composer_warning_debounce_seconds:
+    default: 5
+    min: 2
+    max: 30
+    client: true
+
+  jit_composer_warning_persona:
+    type: enum
+    default: ""
+    enum: "DiscourseAi::Configuration::PersonaEnumerator"
+    allow_any: false
+
+  jit_composer_warning_rate_limit_per_minute:
+    default: 5
+    min: 1
+    max: 30

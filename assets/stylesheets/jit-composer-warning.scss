@@ -1,0 +1,28 @@
+.jit-composer-warning {
+  &.composer-popup {
+    background-color: var(--tertiary-very-low);
+    border-left: 4px solid var(--tertiary);
+  }
+
+  &__content {
+    h3 {
+      margin: 0 0 0.5em;
+      color: var(--primary);
+      font-size: var(--font-up-1);
+    }
+  }
+
+  &__body {
+    margin-bottom: 1em;
+    color: var(--primary-high);
+  }
+
+  &__actions {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  &__dismiss {
+    margin: 0;
+  }
+}
