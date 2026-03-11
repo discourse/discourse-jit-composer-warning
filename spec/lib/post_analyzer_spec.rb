@@ -8,30 +8,30 @@ RSpec.describe JitComposerWarning::PostAnalyzer do
   let(:analyzer) { described_class.new(title: "Test Title", content: "Test content", user: user) }
 
   describe "#analyze" do
-    context "when persona is not configured" do
-      before { SiteSetting.jit_composer_warning_persona = "" }
+    context "when agent is not configured" do
+      before { SiteSetting.jit_composer_warning_agent = "" }
 
-      it "returns skip with persona_not_configured reason" do
+      it "returns skip with agent_not_configured reason" do
         result = analyzer.analyze
         expect(result[:skip]).to eq(true)
-        expect(result[:reason]).to eq("persona_not_configured")
+        expect(result[:reason]).to eq("agent_not_configured")
       end
     end
 
-    context "when persona is configured but not found in database" do
-      before { SiteSetting.jit_composer_warning_persona = "999999" }
+    context "when agent is configured but not found in database" do
+      before { SiteSetting.jit_composer_warning_agent = "999999" }
 
-      it "returns skip with persona_invalid reason" do
+      it "returns skip with agent_invalid reason" do
         result = analyzer.analyze
         expect(result[:skip]).to eq(true)
-        expect(result[:reason]).to eq("persona_invalid")
+        expect(result[:reason]).to eq("agent_invalid")
       end
     end
 
     context "when an error occurs during analysis" do
-      fab!(:ai_persona)
+      fab!(:ai_agent)
 
-      before { SiteSetting.jit_composer_warning_persona = ai_persona.id.to_s }
+      before { SiteSetting.jit_composer_warning_agent = ai_agent.id.to_s }
 
       it "returns skip with error reason and logs the error" do
         Rails.logger.expects(:error).with(regexp_matches(/JitComposerWarning::PostAnalyzer error/))
