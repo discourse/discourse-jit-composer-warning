@@ -58,13 +58,13 @@ RSpec.describe JitComposerWarning::AnalyzeController do
         expect(response.status).to eq(400)
       end
 
-      it "returns skip response when persona is not configured" do
+      it "returns skip response when agent is not configured" do
         sign_in(user)
         post "/jit-composer-warning/analyze.json", params: { content: "test content" }
         expect(response.status).to eq(200)
         json = response.parsed_body
         expect(json["skip"]).to eq(true)
-        expect(json["reason"]).to eq("persona_not_configured")
+        expect(json["reason"]).to eq("agent_not_configured")
       end
 
       it "accepts optional title parameter" do

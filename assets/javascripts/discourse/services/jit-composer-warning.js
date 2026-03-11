@@ -137,7 +137,7 @@ export default class JitComposerWarningService extends Service {
 
   _shouldShowWarning(result) {
     // Check for common warning indicators in the response
-    // The persona can define any fields, but we look for common patterns:
+    // The agent can define any fields, but we look for common patterns:
     // - show_warning: true (explicit)
     // - is_complete && !is_productive (productivity check)
     // - is_complete && is_unclear (clarity check)

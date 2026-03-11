@@ -20,10 +20,10 @@ jit_composer_warning:
     max: 30
     client: true
 
-  jit_composer_warning_persona:
+  jit_composer_warning_agent:
     type: enum
     default: ""
-    enum: "DiscourseAi::Configuration::PersonaEnumerator"
+    enum: "DiscourseAi::Configuration::AgentEnumerator"
     allow_any: false
 
   jit_composer_warning_rate_limit_per_minute:
