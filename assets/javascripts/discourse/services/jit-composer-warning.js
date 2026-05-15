@@ -120,7 +120,7 @@ export default class JitComposerWarningService extends Service {
         return;
       }
 
-      if (result.analyzed && this._shouldShowWarning(result)) {
+      if (result.analyzed && result.show_warning === true) {
         this.lastResult = result;
         this._showWarning(result);
       }
@@ -133,28 +133,6 @@ export default class JitComposerWarningService extends Service {
         console.error("JIT composer warning check failed:", error);
       }
     }
-  }
-
-  _shouldShowWarning(result) {
-    // Check for common warning indicators in the response
-    // The agent can define any fields, but we look for common patterns:
-    // - show_warning: true (explicit)
-    // - is_complete && !is_productive (productivity check)
-    // - is_complete && is_unclear (clarity check)
-    // - needs_improvement: true
-    if (result.show_warning === true) {
-      return true;
-    }
-    if (result.is_complete === true && result.is_productive === false) {
-      return true;
-    }
-    if (result.is_complete === true && result.is_unclear === true) {
-      return true;
-    }
-    if (result.needs_improvement === true) {
-      return true;
-    }
-    return false;
   }
 
   _hashContent(title, content) {

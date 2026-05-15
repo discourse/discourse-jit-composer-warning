@@ -2,6 +2,7 @@ import Component from "@glimmer/component";
 import { fn } from "@ember/helper";
 import { service } from "@ember/service";
 import ComposerTipCloseButton from "discourse/components/composer-tip-close-button";
+import CookText from "discourse/components/cook-text";
 import DButton from "discourse/components/d-button";
 import { i18n } from "discourse-i18n";
 
@@ -14,13 +15,13 @@ export default class JitComposerWarning extends Component {
     <div class="composer-popup__content jit-composer-warning__content">
       <h3>{{i18n "jit_composer_warning.title"}}</h3>
 
-      <p class="jit-composer-warning__body">
-        {{#if @message.result.reason}}
-          {{@message.result.reason}}
+      <div class="jit-composer-warning__body">
+        {{#if @message.result.message}}
+          <CookText @rawText={{@message.result.message}} />
         {{else}}
-          {{i18n "jit_composer_warning.default_message"}}
+          <p>{{i18n "jit_composer_warning.default_message"}}</p>
         {{/if}}
-      </p>
+      </div>
 
       <div class="jit-composer-warning__actions">
         <DButton

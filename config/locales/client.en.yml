@@ -6,6 +6,6 @@ en:
           jit_composer_warning: "JIT Composer Warning"
   js:
     jit_composer_warning:
-      title: "A moment before you post..."
+      title: "Before you post..."
       default_message: "Consider reviewing your post to ensure it's clear and adds value to the discussion."
       dismiss: "Got it"
