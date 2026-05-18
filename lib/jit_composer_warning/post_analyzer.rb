@@ -66,15 +66,11 @@ module JitComposerWarning
     def parse_structured_output(structured_output)
       return { skip: true, reason: "no_response" } if structured_output.blank?
 
-      response_format = ai_agent&.response_format || []
-      result = { analyzed: true }
-
-      response_format.each do |field|
-        key = field["key"]
-        result[key.to_sym] = structured_output.read_buffered_property(key.to_sym)
-      end
-
-      result
+      {
+        analyzed: true,
+        show_warning: structured_output.read_buffered_property(:show_warning) == true,
+        message: structured_output.read_buffered_property(:message),
+      }
     end
   end
 end
